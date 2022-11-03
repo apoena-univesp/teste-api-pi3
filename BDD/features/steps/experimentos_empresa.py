@@ -1,7 +1,7 @@
 from behave import *
 import requests
 
-from features.utils.payload import get_payload_experimentos_empresa
+from BDD.features.utils.payload import get_payload_experimentos_empresa
 
 
 @given('que estamos realizando uma chamada para o endpoint ExperimentosEmpresaPost')

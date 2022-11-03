@@ -1,7 +1,7 @@
 from behave import *
 import requests
 
-from features.utils.payload import get_payload_comparativos
+from BDD.features.utils.payload import get_payload_comparativos
 
 
 @given('que estamos realizando uma chamada para o endpoint ComparativosPost')
@@ -31,4 +31,4 @@ def step_impl(context):
 
 @then('o retorno sera <resposta> do endpoint ComparativosPost')
 def step_impl(context):
-    assert context.failed is False
+    assert 'sucesso' in response.json()['message']
