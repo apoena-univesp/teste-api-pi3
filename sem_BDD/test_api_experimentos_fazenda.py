@@ -5,87 +5,85 @@ url_endpoint = str('http://127.0.0.1:5000/experimentos_fazenda')
 
 def test_sucesso_200():
     response = requests.post(url_endpoint,
-                             data={"padrao": 2,
-                                   "tx_aplicacao": 0,
-                                   "pressao": 0,
-                                   "velocidade": 0,
-                                   "temperatura": 0,
-                                   "umidade": 0,
-                                   "vento": 0,
-                                   "nome_produto": [
-                                       "string"
-                                   ],
-                                   "dosagem": [
-                                       0
-                                   ]})
-    #    print(f'\n[RESPONSE]:', response.json())
+                             data={"taxafaz": 2.34,
+                                   "velofaz": 3.43,
+                                   "pressaofaz": 92.6,
+                                   "tempfaz": 31.5,
+                                   "umidfaz": 70,
+                                   "ventofaz": 18.6,
+                                   "prodfaz_1": "teste",
+                                   "dosefaz_1": 700,
+                                   "id_comp_faz": 1,
+                                   "nome_faz": "fazenda123"
+                                   })
     assert response.status_code == 200
 
 
 def test_limite_400():
     response = requests.post(url_endpoint,
-                             data={
-                                 "nome": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
-                                 "data": "11111-02-24",
-                                 "ponta": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
-                                 "equipamento": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901"})
-    #    print(f'\n[RESPONSE]:', response.json())
+                             data={"taxafaz": 2322222222222222222222222222222222222222222222222222222222222222222222.34,
+                                   "velofaz": 3222222222222222222222222222222222222222222222222222222222222222222222.43,
+                                   "pressaofaz": 92333333333333333333333333333333333333333333333333333333333333333333.6,
+                                   "tempfaz": 44444444444444444444444444444444444444444444444444444444444444444444431.5,
+                                   "umidfaz": 7444444444444444444444444444444444444444444444444444444444444444444444440,
+                                   "ventofaz": 1877777777777777777777777777777777777777777777777777777777777777777777.6,
+                                   "prodfaz_1": "testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetesteteste",
+                                   "dosefaz_1": 70333333333333333333333333333333333333333333333333333333333333333333330,
+                                   "id_comp_faz": 123342243244444444444444446666666666666666666666666666666666666544444,
+                                   "nome_faz": "fazendatestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetesteteste"
+                                   })
     assert response.status_code == 400
 
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 def test_tipagem_400():
     response = requests.post(url_endpoint,
-                             data={"nome": "123",
-                                   "data": "teste",
-                                   "ponta": "123",
-                                   "equipamento": "123"})
-    #    print(f'\n[RESPONSE]:', response.json())
+                             data={"taxafaz": True,
+                                   "velofaz": "3.43",
+                                   "pressaofaz": False,
+                                   "tempfaz": "31.5",
+                                   "umidfaz": True,
+                                   "ventofaz": "18.6",
+                                   "prodfaz_1": 123,
+                                   "dosefaz_1": False,
+                                   "id_comp_faz": "1",
+                                   "nome_faz": 123
+                                   })
     assert response.status_code == 400
-
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 
 def test_nulo_400():
     response = requests.post(url_endpoint,
-                             data={"nome": None,
-                                   "data": None,
-                                   "ponta": None,
-                                   "equipamento": None})
-    #    print(f'\n[RESPONSE]:', response.json())
+                             data={"taxafaz": None,
+                                   "velofaz": None,
+                                   "pressaofaz": None,
+                                   "tempfaz": None,
+                                   "umidfaz": None,
+                                   "ventofaz": None,
+                                   "prodfaz_1": None,
+                                   "dosefaz_1": None,
+                                   "id_comp_faz": None,
+                                   "nome_faz": None
+                                   })
     assert response.status_code == 400
 
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 def test_obrigatoriedade_400():
     response = requests.post(url_endpoint,
                              data={})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 400
 
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 def test_vazio_400():
     response = requests.post(url_endpoint,
-                             data={"nome": "",
-                                   "data": "",
-                                   "ponta": "",
-                                   "equipamento": ""})
-    #    print(f'\n[RESPONSE]:', response.json())
+                             data={"taxafaz": "",
+                                   "velofaz": "",
+                                   "pressaofaz": "",
+                                   "tempfaz": "",
+                                   "umidfaz": "",
+                                   "ventofaz": "",
+                                   "prodfaz_1": "",
+                                   "dosefaz_1": "",
+                                   "id_comp_faz": "",
+                                   "nome_faz": ""
+                                   })
     assert response.status_code == 400
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']

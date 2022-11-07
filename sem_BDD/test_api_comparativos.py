@@ -9,7 +9,6 @@ def test_sucesso_200():
                                    "data": "2022-02-24",
                                    "ponta": "teste",
                                    "equipamento": "tal"})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 200
 
 
@@ -20,13 +19,8 @@ def test_limite_400():
                                  "data": "11111-02-24",
                                  "ponta": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
                                  "equipamento": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901"})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 400
 
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 def test_tipagem_400():
     response = requests.post(url_endpoint,
@@ -34,13 +28,7 @@ def test_tipagem_400():
                                    "data": "teste",
                                    "ponta": "123",
                                    "equipamento": "123"})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 400
-
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 
 def test_nulo_400():
@@ -49,24 +37,14 @@ def test_nulo_400():
                                    "data": None,
                                    "ponta": None,
                                    "equipamento": None})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 400
 
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 def test_obrigatoriedade_400():
     response = requests.post(url_endpoint,
                              data={})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 400
 
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
 
 def test_vazio_400():
     response = requests.post(url_endpoint,
@@ -74,9 +52,4 @@ def test_vazio_400():
                                    "data": "",
                                    "ponta": "",
                                    "equipamento": ""})
-    #    print(f'\n[RESPONSE]:', response.json())
     assert response.status_code == 400
-
-# respostas de erro
-#  assert 'request parameters: [data]' in response.json()['message']
-#  assert 'bla' in response.json()['message']
